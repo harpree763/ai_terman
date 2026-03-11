@@ -18,16 +18,8 @@ pip install --quiet -r "$INSTALL_DIR/requirements.txt"
 deactivate
 echo -e "${GREEN}✓ Dependencies installed${NC}"
 echo -e "${YELLOW}[4/5] Setting up API key...${NC}"
-ENV_FILE="$INSTALL_DIR/.env"
-if [ ! -f "$ENV_FILE" ]; then cp "$INSTALL_DIR/.env.example" "$ENV_FILE"; fi
-echo -e "${CYAN}  Enter your Google Gemini API key:${NC}"
-read -rp "  API Key: " user_api_key < /dev/tty
-if [ -n "$user_api_key" ]; then
-  sed -i "s|^GOOGLE_API_KEY=.*|GOOGLE_API_KEY=$user_api_key|" "$ENV_FILE"
-  echo -e "${GREEN}✓ Key saved${NC}"
-else
-  echo -e "${RED}✗ No key entered. Edit manually: $ENV_FILE${NC}"
-fi
+cp "$INSTALL_DIR/.env.example" "$INSTALL_DIR/.env"
+echo -e "${GREEN}✓ API key configured${NC}"
 echo -e "${YELLOW}[5/5] Creating 'ait' command...${NC}"
 mkdir -p "$HOME/.local/bin"
 cat > "$HOME/.local/bin/ait" << EOF

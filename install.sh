@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; CYAN='\033[0;36m'; BOLD='\033[1m'; NC='\033[0m'
-REPO="https://github.com/harpree763/ai-terminal"
+REPO="https://github.com/harpree763/ai_terman"
 INSTALL_DIR="$HOME/.ai-terminal"
 echo -e "${CYAN}${BOLD}  AI Terminal Installer${NC}"
 echo -e "${YELLOW}[1/5] Checking dependencies...${NC}"
@@ -11,7 +11,7 @@ echo -e "${YELLOW}[2/5] Downloading...${NC}"
 if [ -d "$INSTALL_DIR/.git" ]; then git -C "$INSTALL_DIR" pull --quiet; else git clone --quiet "$REPO" "$INSTALL_DIR"; fi
 echo -e "${GREEN}✓ Downloaded${NC}"
 echo -e "${YELLOW}[3/5] Installing Python dependencies...${NC}"
-python3 -m venv "$INSTALL_DIR/.venv" --quiet
+python3 -m venv "$INSTALL_DIR/.venv"
 source "$INSTALL_DIR/.venv/bin/activate"
 pip install --quiet --upgrade pip
 pip install --quiet -r "$INSTALL_DIR/requirements.txt"

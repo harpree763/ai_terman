@@ -5,7 +5,7 @@ REPO="https://github.com/harpree763/ai_terman"
 INSTALL_DIR="$HOME/.ai-terminal"
 echo -e "${CYAN}${BOLD}  AI Terminal Installer${NC}"
 echo -e "${YELLOW}[1/5] Checking dependencies...${NC}"
-if ! command -v python3 &>/dev/null; then sudo apt-get update -qq && sudo apt-get install -y python3 python3-pip python3-venv; else echo -e "${GREEN}✓ python3 found${NC}"; fi
+if ! command -v python3 &>/dev/null; then sudo apt-get update -qq && sudo apt-get install -y python3 python3-pip python3.11-venv; else sudo apt-get install -y python3.11-venv 2>/dev/null; echo -e "${GREEN}✓ python3 found${NC}"; fi
 if ! command -v git &>/dev/null; then sudo apt-get install -y git; fi
 echo -e "${YELLOW}[2/5] Downloading...${NC}"
 if [ -d "$INSTALL_DIR/.git" ]; then git -C "$INSTALL_DIR" pull --quiet; else git clone --quiet "$REPO" "$INSTALL_DIR"; fi

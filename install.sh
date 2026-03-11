@@ -29,5 +29,12 @@ python3 "$INSTALL_DIR/agent.py" "\$@"
 deactivate
 EOF
 chmod +x "$HOME/.local/bin/ait"
-if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"; fi
-echo -e "${GREEN}${BOLD}✓ Done! Run: ait \"your task here\"${NC}"
+# Add to PATH in all shell configs
+grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc" 2>/dev/null || echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"
+grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.zshrc" 2>/dev/null || echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.zshrc"
+export PATH="$HOME/.local/bin:$PATH"
+echo -e "${GREEN}${BOLD}"
+echo "  ✓ Done! You can now use:"
+echo "  ait \"your task here\""
+echo -e "${NC}"
+exec $SHELL

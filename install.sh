@@ -20,10 +20,10 @@ echo -e "${GREEN}✓ Dependencies installed${NC}"
 echo -e "${YELLOW}[4/5] Setting up API key...${NC}"
 ENV_FILE="$INSTALL_DIR/.env"
 if [ ! -f "$ENV_FILE" ]; then cp "$INSTALL_DIR/.env.example" "$ENV_FILE"; fi
-if grep -q "^ANTHROPIC_API_KEY=sk-" "$ENV_FILE" 2>/dev/null; then echo -e "${GREEN}✓ API key already set${NC}"; else
+if grep -q "^GOOGLE_API_KEY=AIzaSy" "$ENV_FILE" 2>/dev/null; then echo -e "${GREEN}✓ API key already set${NC}"; else
   echo -e "${CYAN}  Enter your Anthropic API key:${NC}"
   read -rp "  API Key: " user_api_key
-  if [[ "$user_api_key" == sk-* ]]; then sed -i "s|^ANTHROPIC_API_KEY=.*|ANTHROPIC_API_KEY=$user_api_key|" "$ENV_FILE"; echo -e "${GREEN}✓ Key saved${NC}"; else echo -e "${RED}✗ Invalid key. Edit manually: $ENV_FILE${NC}"; fi
+  if [[ "$user_api_key" == sk-* ]]; then sed -i "s|^GOOGLE_API_KEY=.*|GOOGLE_API_KEY=$user_api_key|" "$ENV_FILE"; echo -e "${GREEN}✓ Key saved${NC}"; else echo -e "${RED}✗ Invalid key. Edit manually: $ENV_FILE${NC}"; fi
 fi
 echo -e "${YELLOW}[5/5] Creating 'ait' command...${NC}"
 mkdir -p "$HOME/.local/bin"

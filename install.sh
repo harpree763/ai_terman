@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; CYAN='\033[0;36m'; BOLD='\033[1m'; NC='\033[0m'
-REPO="https://github.com/YOUR_USERNAME/ai-terminal"
+REPO="https://github.com/harpree763/ai-terminal"
 INSTALL_DIR="$HOME/.ai-terminal"
 echo -e "${CYAN}${BOLD}  AI Terminal Installer${NC}"
 echo -e "${YELLOW}[1/5] Checking dependencies...${NC}"

@@ -5,8 +5,9 @@ REPO="https://github.com/harpree763/ai_terman"
 INSTALL_DIR="$HOME/.ai-terminal"
 echo -e "${CYAN}${BOLD}  AI Terminal Installer${NC}"
 echo -e "${YELLOW}[1/5] Checking dependencies...${NC}"
-if ! command -v python3 &>/dev/null; then sudo apt-get update -qq && sudo apt-get install -y python3 python3-pip python3.11-venv; else sudo apt-get install -y python3.11-venv 2>/dev/null; echo -e "${GREEN}✓ python3 found${NC}"; fi
-if ! command -v git &>/dev/null; then sudo apt-get install -y git; fi
+sudo apt-get update -qq
+sudo apt-get install -y python3 python3-pip python3-venv git
+echo -e "${GREEN}✓ Dependencies ready${NC}"
 echo -e "${YELLOW}[2/5] Downloading...${NC}"
 if [ -d "$INSTALL_DIR/.git" ]; then git -C "$INSTALL_DIR" pull --quiet; else git clone --quiet "$REPO" "$INSTALL_DIR"; fi
 echo -e "${GREEN}✓ Downloaded${NC}"
@@ -29,12 +30,8 @@ python3 "$INSTALL_DIR/agent.py" "\$@"
 deactivate
 EOF
 chmod +x "$HOME/.local/bin/ait"
-# Add to PATH in all shell configs
 grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc" 2>/dev/null || echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"
-grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.zshrc" 2>/dev/null || echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.zshrc"
 export PATH="$HOME/.local/bin:$PATH"
 echo -e "${GREEN}${BOLD}"
-echo "  ✓ Done! You can now use:"
-echo "  ait \"your task here\""
+echo "  ✓ Done! Run: ait"
 echo -e "${NC}"
-exec $SHELL

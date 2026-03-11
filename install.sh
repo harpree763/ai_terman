@@ -21,7 +21,7 @@ echo -e "${YELLOW}[4/5] Setting up API key...${NC}"
 ENV_FILE="$INSTALL_DIR/.env"
 if [ ! -f "$ENV_FILE" ]; then cp "$INSTALL_DIR/.env.example" "$ENV_FILE"; fi
 echo -e "${CYAN}  Enter your Google Gemini API key:${NC}"
-read -rp "  API Key: " user_api_key
+read -rp "  API Key: " user_api_key < /dev/tty
 if [ -n "$user_api_key" ]; then
   sed -i "s|^GOOGLE_API_KEY=.*|GOOGLE_API_KEY=$user_api_key|" "$ENV_FILE"
   echo -e "${GREEN}✓ Key saved${NC}"
